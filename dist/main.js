@@ -1,0 +1,1 @@
+(()=>{const e=document.getElementById("content"),n=document.createElement("div"),t=document.getElementById("all");n.classList.add("content-header"),n.innerHTML=t.innerHTML,e.appendChild(n)})();

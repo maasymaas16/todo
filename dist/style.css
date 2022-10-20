@@ -84,6 +84,10 @@ html, body {
     border-bottom: 2px solid white;
 }
 
+#all{
+    border-bottom: 2px solid var(--fontcolor);
+}
+
 #content {
     height: 90vh;
     width: 85vw;
