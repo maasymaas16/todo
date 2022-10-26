@@ -3,9 +3,9 @@ import { allTasks, Task } from './tasks.js'
 const content = document.getElementById('content');
 const contenthead = document.createElement('div');
 const addTask = document.createElement('div');
+const f = document.getElementById('addTaskForm');
 
 function makePopUpForm(){
-
 
     var f = document.createElement('form');
     f.setAttribute('id', 'addTaskForm');
@@ -71,22 +71,19 @@ function displayHome(){
     content.appendChild(addTask);
 }
 
-
 function addNewTask(){
-    contenthead.classList.add('active');
-    addTask.classList.add('active');
     const f = document.getElementById('addTaskForm');
-    f.classList.remove('active');
     document.addEventListener('click', function (e){
         if(e.target && e.target.id == 'submitTask'){
-            const name = document.getElementById('id', 'taskField').value;
-            const date = document.getElementById('id', 'dueDate').value;
+            const name = document.getElementById('taskField').value;
+            const date = document.getElementById('dueDate').value;
             const task = new Task(name, date);
             allTasks.push(task);
             f.reset();
-            f.classlist.add('active');
+            f.classList.add('active');
             contenthead.classList.remove('active');
             addTask.classList.remove('active');
+            displayTasks(allTasks);
         }
 
     });
@@ -100,7 +97,7 @@ function addNewTask(){
     });
 }
 
-function displayTasks(){
+function displayTasks(project){
     for (var i = 0; i < allTasks.length; i++){
         var taskrow = document.createElement('div');
         taskrow.classList.add('taskrow');
@@ -109,8 +106,8 @@ function displayTasks(){
         checkbox.innerHTML = '<i class = "far fa-circle">';
         var taskName = document.createElement('div');
         var taskDate = document.createElement('div');
-        taskDate.innerHTML = allTasks[i].getDate();
-        taskName.innerHTML = allTasks[i].getName();
+        taskDate.innerHTML = project[i].getDate();
+        taskName.innerHTML = project[i].getName();
         taskrow.appendChild(checkbox);
         taskrow.appendChild(taskName);
         taskrow.appendChild(taskDate);
@@ -118,4 +115,11 @@ function displayTasks(){
     } 
 }
 
-export { displayHome, addNewTask, makePopUpForm }
+function displayPopUp(){
+    const f = document.getElementById('addTaskForm');
+    contenthead.classList.add('active');
+    addTask.classList.add('active');
+    f.classList.remove('active');
+}
+
+export { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks }
