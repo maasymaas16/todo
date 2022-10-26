@@ -1,4 +1,9 @@
-import { displayHome, addTask } from './UI.js'
+import { displayHome, addNewTask, makePopUpForm } from './UI.js'
 
+makePopUpForm();
 displayHome();
-addTask();
+const add = document.getElementById('addTask');
+add.addEventListener('click', function(){
+    addNewTask();
+});
+
