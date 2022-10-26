@@ -57,22 +57,30 @@ function displayHome(){
 
     addTask.classList.add('add-task');
     addTask.setAttribute('id', 'addTask');
+
     const addDesc = document.createElement('div');
     addDesc.classList.add('add-task-description');
     addDesc.setAttribute('id','add-task-description');
     addDesc.innerHTML = "Add Task";
+
     const addButton = document.createElement('div');
     addButton.classList.add('add-button');
     addButton.setAttribute('id','add-button');
     addButton.innerHTML = '<i class="fa-regular fa-square-plus "></i>';
 
+    const tasksdisplay = document.createElement('div');
+    tasksdisplay.classList.add('display-tasks-section');
+    tasksdisplay.setAttribute('id', 'tasksDisplay');
+
     addTask.appendChild(addButton);
     addTask.appendChild(addDesc);
     content.appendChild(addTask);
+    content.appendChild(tasksdisplay);
 }
 
 function addNewTask(){
     const f = document.getElementById('addTaskForm');
+    const display = document.getElementById('tasksDisplay');
     document.addEventListener('click', function (e){
         if(e.target && e.target.id == 'submitTask'){
             const name = document.getElementById('taskField').value;
@@ -83,6 +91,7 @@ function addNewTask(){
             f.classList.add('active');
             contenthead.classList.remove('active');
             addTask.classList.remove('active');
+            display.innerHTML = '';
             displayTasks(allTasks);
         }
 
@@ -98,6 +107,7 @@ function addNewTask(){
 }
 
 function displayTasks(project){
+    const display = document.getElementById('tasksDisplay');
     for (var i = 0; i < allTasks.length; i++){
         var taskrow = document.createElement('div');
         taskrow.classList.add('taskrow');
@@ -111,7 +121,7 @@ function displayTasks(project){
         taskrow.appendChild(checkbox);
         taskrow.appendChild(taskName);
         taskrow.appendChild(taskDate);
-        content.appendChild(taskrow);
+        display.appendChild(taskrow);
     } 
 }
 
