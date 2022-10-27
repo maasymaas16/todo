@@ -16,11 +16,13 @@ function makePopUpForm(){
     task.setAttribute('name',"Task Description");
     task.setAttribute('id', 'taskField');
     task.setAttribute('placeholder', 'Pay Phone Bill');
+    task.setAttribute('required', '');
 
     var date = document.createElement("input"); 
     date.setAttribute('id', 'dueDate');
     date.setAttribute('type',"date");
     date.setAttribute('name', 'Due Date');
+    date.setAttribute('required', '');
 
     var buttonrow = document.createElement('div');
     buttonrow.classList.add('button-row');
@@ -85,14 +87,20 @@ function addNewTask(){
         if(e.target && e.target.id == 'submitTask'){
             const name = document.getElementById('taskField').value;
             const date = document.getElementById('dueDate').value;
-            const task = new Task(name, date);
-            allTasks.push(task);
-            f.reset();
-            f.classList.add('active');
-            contenthead.classList.remove('active');
-            addTask.classList.remove('active');
-            display.innerHTML = '';
-            displayTasks(allTasks);
+                if(name === '' ){
+                    alert('Please fill out task field!');
+                } else if (date === ''){
+                    alert('Please select a date!');
+                } else {
+                    const task = new Task(name, date);
+                    allTasks.push(task);
+                    f.reset();
+                    f.classList.add('active');
+                    contenthead.classList.remove('active');
+                    addTask.classList.remove('active');
+                    display.innerHTML = '';
+                    displayTasks(allTasks);
+                }
         }
 
     });
