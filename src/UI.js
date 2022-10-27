@@ -80,7 +80,7 @@ function displayHome(){
     content.appendChild(tasksdisplay);
 }
 
-function addNewTask(){
+function addNewTask(project){
     const f = document.getElementById('addTaskForm');
     const display = document.getElementById('tasksDisplay');
     document.addEventListener('click', function (e){
@@ -93,7 +93,7 @@ function addNewTask(){
                     alert('Please select a date!');
                 } else {
                     const task = new Task(name, date);
-                    allTasks.push(task);
+                    project.push(task);
                     f.reset();
                     f.classList.add('active');
                     contenthead.classList.remove('active');
@@ -119,13 +119,17 @@ function displayTasks(project){
     for (var i = 0; i < allTasks.length; i++){
         var taskrow = document.createElement('div');
         taskrow.classList.add('taskrow');
-        var checkbox = document.createElement('div');
+        var checkbox = document.createElement('button');
         checkbox.id = 'completeTask';
-        checkbox.innerHTML = '<i class = "far fa-circle">';
-        var edit = document.createElement('div');
-        edit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-        var trash = document.createElement('div');
-        trash.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        checkbox.className = 'complete-task';
+        checkbox.value = i;
+        checkbox.innerHTML = '<i class = "far fa-circle fa-xl">';
+        var edit = document.createElement('button');
+        edit.innerHTML = '<i class="fa-solid fa-pen-to-square fa-xl"></i>';
+        edit.classList.add('edit-task');
+        var trash = document.createElement('button');
+        trash.innerHTML = '<i class="fa-solid fa-trash-can fa-xl"></i>';
+        trash.classList.add('trash');
         var taskName = document.createElement('div');
         var taskDate = document.createElement('div');
         taskDate.innerHTML = project[i].getDate();
@@ -146,4 +150,14 @@ function displayPopUp(){
     f.classList.remove('active');
 }
 
-export { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks }
+function completeTask(project){
+    document.addEventListener('click', function(e){
+        if(e.target && e.target.id == 'completeTask'){
+            console.log(e.id);
+            project.splice(e.value, 1);
+        }
+    })
+
+}
+
+export { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks, completeTask }

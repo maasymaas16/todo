@@ -179,11 +179,22 @@ html, body {
     margin-top: .5em;
 }
 
-#completeTask {
-    border-radius: 50%;
+#completeTask, .trash, .edit-task{
+    border: none;
+    background-color: white;
+    size: 1.5em;
+}
+
+button > i {
+    pointer-events: none;
+}
+
+#completeTask:hover, .trash:hover, .edit-task:hover {
+    cursor: pointer;
 }
 
 .display-tasks-section{
     height: auto;
     width: auto;
 }
+
