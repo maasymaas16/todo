@@ -114,6 +114,10 @@ function displayTasks(project){
         var checkbox = document.createElement('div');
         checkbox.id = 'completeTask';
         checkbox.innerHTML = '<i class = "far fa-circle">';
+        var edit = document.createElement('div');
+        edit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+        var trash = document.createElement('div');
+        trash.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         var taskName = document.createElement('div');
         var taskDate = document.createElement('div');
         taskDate.innerHTML = project[i].getDate();
@@ -121,6 +125,8 @@ function displayTasks(project){
         taskrow.appendChild(checkbox);
         taskrow.appendChild(taskName);
         taskrow.appendChild(taskDate);
+        taskrow.appendChild(edit);
+        taskrow.appendChild(trash);
         display.appendChild(taskrow);
     } 
 }

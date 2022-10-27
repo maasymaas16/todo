@@ -172,13 +172,14 @@ html, body {
 }
 
 .taskrow{
-    display: flex;
-    gap: 2em;
+    display: grid;
+    grid-template-columns: 1fr 12fr 4fr 1fr 1fr;
+    gap: 1em;
     font-size: 1.25em;
+    margin-top: .5em;
 }
 
 #completeTask {
-    
     border-radius: 50%;
 }
 
