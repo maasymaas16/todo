@@ -119,11 +119,12 @@ function displayTasks(project){
     for (var i = 0; i < allTasks.length; i++){
         var taskrow = document.createElement('div');
         taskrow.classList.add('taskrow');
-        var checkbox = document.createElement('button');
+        var checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox')
         checkbox.id = 'completeTask';
         checkbox.className = 'complete-task';
         checkbox.value = i;
-        checkbox.innerHTML = '<i class = "far fa-circle fa-xl">';
+        // checkbox.innerHTML = '<i class = "far fa-circle fa-xl">';
         var edit = document.createElement('button');
         edit.innerHTML = '<i class="fa-solid fa-pen-to-square fa-xl"></i>';
         edit.classList.add('edit-task');
@@ -153,8 +154,11 @@ function displayPopUp(){
 function completeTask(project){
     document.addEventListener('click', function(e){
         if(e.target && e.target.id == 'completeTask'){
-            console.log(e.id);
-            project.splice(e.value, 1);
+            var display = document.getElementById('tasksDisplay');
+            display.innerHTML = "";
+            console.log(e.target.value);
+            project.splice(e.target.value, 1);
+            displayTasks(project);
         }
     })
 
