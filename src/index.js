@@ -1,4 +1,4 @@
-import { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks, completeTask } from './UI.js'
+import { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks, completeTask, trashTask } from './UI.js'
 import { allTasks, Task } from './tasks.js'
 let currproj = allTasks;
 
@@ -10,3 +10,4 @@ add.addEventListener('click', function(){
 });
 addNewTask(currproj);
 completeTask(currproj);
+trashTask(currproj);

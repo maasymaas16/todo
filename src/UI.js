@@ -131,6 +131,8 @@ function displayTasks(project){
         var trash = document.createElement('button');
         trash.innerHTML = '<i class="fa-solid fa-trash-can fa-xl"></i>';
         trash.classList.add('trash');
+        trash.setAttribute('id', 'trash');
+        trash.value = i;
         var taskName = document.createElement('div');
         var taskDate = document.createElement('div');
         taskDate.innerHTML = project[i].getDate();
@@ -164,4 +166,16 @@ function completeTask(project){
 
 }
 
-export { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks, completeTask }
+function trashTask(project){
+    document.addEventListener('click', function(e){
+        if(e.target && e.target.id == 'trash'){
+            var display = document.getElementById('tasksDisplay');
+            display.innerHTML = "";
+            console.log(e.target.value);
+            project.splice(e.target.value, 1);
+            displayTasks(project);
+        }
+    })
+}
+
+export { displayHome, addNewTask, makePopUpForm, displayPopUp, displayTasks, completeTask, trashTask }
